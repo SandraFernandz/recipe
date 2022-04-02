@@ -10,16 +10,26 @@ function App() {
     return (await result.json()).results;
   };
 
+  const search = (event) => {};
+
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    async () => {
+    (async () => {
       const query = encodeURIComponent(recipeSearch);
       const response = await searchForRecipes(query);
       setRecipesFound(response);
-    }();
+    })();
   });
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <h1>Recipe Search</h1>
+      <form className="searchForm" onSubmit={(event) => search(event)}>
+        <input id="searchText" type="text" />
+        <button>Search</button>
+      </form>
+    </div>
+  );
 }
 
 export default App;
